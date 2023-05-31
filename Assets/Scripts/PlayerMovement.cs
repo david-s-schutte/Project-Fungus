@@ -9,25 +9,26 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float freeWill;
     Vector3 mousePosition;
     Vector3 moveDirection;
-    [SerializeField] GameObject marker;
+    public GameObject marker;
+    WorldGrid world;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         mousePosition = transform.position;
+        world = GameObject.FindWithTag("WorldGenerator").GetComponent<WorldGenerator>().world;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(mousePosition);
-
         if (Input.GetMouseButtonDown(0)) {
             if (willListenToPlayer())
             {
                 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = 0;
-                Instantiate(marker, mousePosition, Quaternion.identity);
+                world.SetValue(mousePosition, 37);
+                world.DebugGrid();
             }
         }
 
