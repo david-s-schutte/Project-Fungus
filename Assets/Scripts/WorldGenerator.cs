@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
 {
-    public WorldGrid world;
+    public WorldGrid<bool> world;
     [SerializeField] int width;
     [SerializeField] int height;
     [SerializeField] float cellSize;
@@ -13,7 +13,7 @@ public class WorldGenerator : MonoBehaviour
 
     void Awake()
     {
-        world = new WorldGrid(width, height, cellSize, origin);
+        world = new WorldGrid<bool>(width, height, cellSize, origin);
         if (debug)
             world.DebugGrid();
     }

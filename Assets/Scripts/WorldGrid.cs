@@ -5,14 +5,14 @@ using TMPro;
 
 //CODE BASED OFF OF THE CODE-MONKEY YOUTUBE TUTORIAL ON 2D GRIDS
 
-public class WorldGrid
+public class WorldGrid<TGridObject>
 {
     #region Grid Properties
     private int width;                  //width of the grid
     private int height;                 //height of the grid
     private float cellSize;             //size of each cell
     private Vector3 originPosition;     //origin position of the grid
-    private int[,] gridArray;           //2D array to store the value of each cell
+    private TGridObject[,] gridArray;           //2D array to store the value of each cell
     #endregion
 
     #region Debug variables
@@ -27,7 +27,7 @@ public class WorldGrid
         this.height = height;
         this.cellSize = cellSize;
         this.originPosition = originPosition;
-        gridArray = new int[width, height];
+        gridArray = new TGridObject[width, height];
 
         if(debug)
             DebugGrid();
@@ -48,18 +48,18 @@ public class WorldGrid
     }
 
     //XY METHOD: Get the value of a given coordinate within the Grid Array
-    public int GetValue(int x, int y)
+    public TGridObject GetValue(int x, int y)
     {
         //Ensure that the given coordinates are valid, otherwise return -1
         if (x >= 0 && y >= 0 && x < width && y < height)
         {
             return gridArray[x, y];
         }
-        else { return -1; }
+        else { return default(TGridObject); }
     }
 
     //Vector3 METHOD: Get the value of a world position within the Grid Array
-    public int GetValue(Vector3 worldPosition)
+    public TGridObject GetValue(Vector3 worldPosition)
     {
         int x, y;
         GetXY(worldPosition, out x, out y);
@@ -69,7 +69,7 @@ public class WorldGrid
 
     #region Setters
     //XY METHOD: Sets the value of the given coordinate within the Grid Array
-    public void SetValue(int x, int y, int value)
+    public void SetValue(int x, int y, TGridObject value)
     {
         //Ensure we've been given a valid coordinate first
         if (x >= 0 && y >= 0 && x < width && y < height)
@@ -77,7 +77,7 @@ public class WorldGrid
     }
 
     //Vector3 METHOD: Sets the value of the given world position within the Grid Array
-    public void SetValue(Vector3 worldPosition, int value)
+    public void SetValue(Vector3 worldPosition, TGridObject value)
     {
         int x, y;
         GetXY(worldPosition, out x, out y);

@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 mousePosition;
     Vector3 moveDirection;
     public GameObject marker;
-    WorldGrid world;
+    WorldGrid<bool> world;
 
     void Start()
     {
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = 0;
-                world.SetValue(mousePosition, 37);
+                world.SetValue(mousePosition, true);
                 world.DebugGrid();
             }
         }
