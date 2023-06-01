@@ -5,6 +5,7 @@ using UnityEngine;
 public class WorldGenerator : MonoBehaviour
 {
     public WorldGrid<bool> world;
+    private PathFinding pathFinding;
     [SerializeField] int width;
     [SerializeField] int height;
     [SerializeField] float cellSize;
@@ -16,5 +17,6 @@ public class WorldGenerator : MonoBehaviour
         world = new WorldGrid<bool>(width, height, cellSize, origin);
         if (debug)
             world.DebugGrid();
+        pathFinding = new PathFinding(width, height, cellSize, origin);
     }
 }

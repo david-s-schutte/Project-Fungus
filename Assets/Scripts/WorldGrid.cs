@@ -12,7 +12,7 @@ public class WorldGrid<TGridObject>
     private int height;                 //height of the grid
     private float cellSize;             //size of each cell
     private Vector3 originPosition;     //origin position of the grid
-    private TGridObject[,] gridArray;           //2D array to store the value of each cell
+    private TGridObject[,] gridArray;   //2D array to store the value of each cell
     #endregion
 
     #region Debug variables
@@ -64,6 +64,16 @@ public class WorldGrid<TGridObject>
         int x, y;
         GetXY(worldPosition, out x, out y);
         return GetValue(x, y);
+    }
+
+    public int GetWidth()
+    {
+        return width;
+    }
+
+    public int GetHeight()
+    {
+        return height;
     }
     #endregion
 
