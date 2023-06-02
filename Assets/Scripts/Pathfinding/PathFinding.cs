@@ -76,8 +76,13 @@ public class PathFinding
             //Check the neighbouring nodes relative to current node
             foreach (PathNode node in GetNeighbourList(currentNode))
             {
-                //Move onto next node if this node has been searched already
+                //Move onto next node if this node has been searched already or if it isn't walkable
                 if (closedList.Contains(node)) continue;
+                if (!node.isWalkable)
+                {
+                    closedList.Add(node);
+                    continue;
+                }
                 
                 //Calculate a tentative G Cost based on our current node's G Cost
                 int tentativeGCost = currentNode.gCost + CalculateDistance(currentNode, node);
@@ -186,7 +191,7 @@ public class PathFinding
     }
 
     //Returns a PathNode on the World Grid given an x and y coordinate
-    private PathNode GetNode(int x, int y)
+    public PathNode GetNode(int x, int y)
     {
         return worldGrid.GetValue(x, y);
     }

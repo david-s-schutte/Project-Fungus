@@ -13,6 +13,7 @@ public class PathNode
     public int hCost;                       //Expected H Cost of this PathNode
     public int fCost;                       //Expected F Cost of this PathNode
 
+    public bool isWalkable;
     public PathNode prevNode;               //Reference to the previous PathNode when finding a path
     #endregion
 
@@ -22,12 +23,18 @@ public class PathNode
         this.worldGrid = worldGrid;
         this.x = x;
         this.y = y;
+        isWalkable = true;
     }
 
     //Used to calculate the FCost of this PathNode
     public void CalculateFCost()
     {
         fCost = gCost + hCost;
+    }
+
+    public void SetIsWalkable()
+    {
+        isWalkable = !isWalkable;
     }
 
     public override string ToString()

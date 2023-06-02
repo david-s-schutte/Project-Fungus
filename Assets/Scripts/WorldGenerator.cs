@@ -13,6 +13,8 @@ public class WorldGenerator : MonoBehaviour
     public bool debug;
     Vector3 mousePosition;
 
+    public GameObject unwalkableVisual;
+
     void Awake()
     {
         //world = new WorldGrid<int>(width, height, cellSize, origin);
@@ -29,6 +31,15 @@ public class WorldGenerator : MonoBehaviour
         {
             if (debug)
                 DebugPathFinding();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
+            pathFinding.GetPathNodeGrid().GetXY(mousePosition, out int x, out int y);
+            pathFinding.GetNode(x, y).SetIsWalkable();
+            GameObject debugCellClone = GameObject.Instantiate(unwalkableVisual, pathFinding.GetPathNodeGrid().GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * 0.5f, Quaternion.identity);
         }
     }
 

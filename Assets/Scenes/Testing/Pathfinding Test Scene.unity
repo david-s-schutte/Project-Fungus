@@ -655,6 +655,7 @@ MonoBehaviour:
   cellSize: 1
   origin: {x: -8.61, y: -2.94, z: 0}
   debug: 1
+  unwalkableVisual: {fileID: 7097437132643177187, guid: 8d2cd914149eda845bae4d9746fea961, type: 3}
 --- !u!1 &2064044945
 GameObject:
   m_ObjectHideFlags: 0
