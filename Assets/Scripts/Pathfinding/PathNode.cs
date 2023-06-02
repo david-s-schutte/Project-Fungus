@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class PathNode
 {
-    private WorldGrid<PathNode> worldGrid;
-    public int x;
-    public int y;
+    #region Properties
+    private WorldGrid<PathNode> worldGrid;  //Reference to the grid each PathNode lies on
+    public int x;                           //PathNode's x position
+    public int y;                           //PathNode's y position
 
-    public int gCost;
-    public int hCost;
-    public int fCost;
+    public int gCost;                       //Expected G Cost of this PathNode
+    public int hCost;                       //Expected H Cost of this PathNode
+    public int fCost;                       //Expected F Cost of this PathNode
 
-    public PathNode prevNode;
+    public PathNode prevNode;               //Reference to the previous PathNode when finding a path
+    #endregion
 
+    //Constructor
     public PathNode(WorldGrid<PathNode> worldGrid, int x, int y)
     {
         this.worldGrid = worldGrid;
@@ -21,6 +24,7 @@ public class PathNode
         this.y = y;
     }
 
+    //Used to calculate the FCost of this PathNode
     public void CalculateFCost()
     {
         fCost = gCost + hCost;
@@ -28,6 +32,6 @@ public class PathNode
 
     public override string ToString()
     {
-        return x + "y, " + y;
+        return worldGrid +  ", "+ x + "," + y;
     }
 }

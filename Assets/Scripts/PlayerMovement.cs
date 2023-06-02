@@ -16,33 +16,23 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         mousePosition = transform.position;
-        world = GameObject.FindWithTag("WorldGenerator").GetComponent<WorldGenerator>().world;
+        //world = GameObject.FindWithTag("WorldGenerator").GetComponent<WorldGenerator>().world;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
-            if (willListenToPlayer())
-            {
-                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePosition.z = 0;
-                world.SetValue(mousePosition, true);
-                world.DebugGrid();
-            }
-        }
-
-        if (shouldMovePlayer() && !isPlayerMoving())
-        {
-            moveDirection = mousePosition - transform.position;
-            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            rb.AddForce(moveDirection * moveSpeed);
-        }
-        else if (!shouldMovePlayer())
-        {
-            rb.velocity = Vector2.zero;
-        }
+        //if (shouldMovePlayer() && !isPlayerMoving())
+        //{
+        //    moveDirection = mousePosition - transform.position;
+        //    float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+        //    transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //    rb.AddForce(moveDirection * moveSpeed);
+        //}
+        //else if (!shouldMovePlayer())
+        //{
+        //    rb.velocity = Vector2.zero;
+        //}
     }
 
     private bool willListenToPlayer() {

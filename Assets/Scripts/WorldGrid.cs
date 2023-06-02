@@ -35,13 +35,13 @@ public class WorldGrid<TGridObject>
 
     #region Getters
     //Return the world position of a cell as a Vector3
-    private Vector3 GetWorldPosition(int x, int y)
+    public Vector3 GetWorldPosition(int x, int y)
     {
         return new Vector3(x, y) * cellSize + originPosition;
     }
 
     //Return the relevant coordinates within the grid given a world position
-    private void GetXY(Vector3 worldPosition, out int x, out int y)
+    public void GetXY(Vector3 worldPosition, out int x, out int y)
     {
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
@@ -114,9 +114,9 @@ public class WorldGrid<TGridObject>
                 }
                 else
                     Debug.LogWarning("Error: debugCell prefab not found");
-                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.red, 100f);
-                Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.red, 100f);
-                Debug.Log("Value at: " + x + ", " + y + " is: " + gridArray[x, y]);
+                //Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.red, 100f);
+                //Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.red, 100f);
+                //Debug.Log("Value at: " + x + ", " + y + " is: " + gridArray[x, y]);
             }
         }
         Debug.DrawLine(GetWorldPosition(0, height), GetWorldPosition(width, height), Color.red, 100f);
